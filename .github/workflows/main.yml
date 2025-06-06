@@ -21,8 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate CycloneDX SBOM
-        run: npx @cyclonedx/bom@latest -o sbom.json
+      - name: Install CycloneDX Node module
+        run: npm install --save-dev @cyclonedx/bom
+
+      - name: Generate SBOM
+        run: npx cyclonedx-bom -o sbom.json
 
       - name: Upload SBOM as artifact
         uses: actions/upload-artifact@v4
